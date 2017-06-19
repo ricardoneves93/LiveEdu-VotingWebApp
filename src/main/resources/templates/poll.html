@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    	<!-- Latest compiled CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        
+        <link href="style.css" rel="stylesheet"></link>
+        <title>Spring Boot voting - Poll</title>
+    </head>
+    <body>
+    	<div class="container">
+    		<div class="row">
+    			<h4 class="poll-name">Poll - <span th:text="${poll.pollName}"></span></h4>
+    		</div>
+    		<div class="row">
+    			<h6 th:text="${poll.pollQuestion}"></h6>
+    		</div>
+    		
+	    	<div class="row">
+    			<table class="table table-hover" data-selectable="selectable" data-row-selectable="true">
+			    	<thead>
+			    		<th>Option</th>
+			    		<th># Votes</th>
+			    	</thead>
+			    	<tbody>
+			    		<form th:id="vote-form" action="#" th:action="@{/polls/dec}" th:object="${voteModel}" method="post">
+			    			<tr th:each="pollOption: ${poll.pollOptions}">
+				    			<td>
+					    			<span class="checkbox-custom checkbox-primary">
+			                            <input class="selectable-all" type="radio" th:name="poll" th:value="${pollOption.id}"></input>
+			                          </span>
+				    			</td>
+				    			<td th:text="${pollOption.optionName}"></td>
+				    			<td th:text="${pollOption.optionVotes}"></td>
+			    			</tr>
+			    		</form>
+			    		
+			    	</tbody>
+	    		</table>
+    		</div>
+    		<div class="row">
+    			<div class="col-lg-10"></div>
+    			<div class="col-lg-2">
+    				<button id="submit-button" type="button" class="btn btn-block btn-info">Submit</button>
+    			</div>
+    		</div>
+	    	
+    	</div>
+    	
+    	<!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- Jquery logic for submiting data -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </body>
+</html>
