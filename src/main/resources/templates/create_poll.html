@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    	<!-- Latest compiled CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        
+        <link rel="stylesheet" th:href="@{/style.css}"></link>
+        
+        <link rel="stylesheet" th:href="@{/remark.min.css}"></link>
+        
+        <title>Spring Boot voting - Poll</title>
+    </head>
+    <body>
+    	<div class="container">
+    		<div class="row">
+    			<h2 class="center">Create new poll</h2>
+    		</div>
+    		<form id="poll-form">
+    			<div class="form-group">
+    				<div class="row">
+	            		<div class="panel panel-primary">
+							<div class="panel-heading">
+							  <h3 class="panel-title">Poll Identification</h3>
+							</div>
+							<div class="panel-body">
+								<div class="col-md-12">
+					                <h5 class="poll-name-title">Poll Name</h5>
+					                <input type="text" class="form-control round" id="poll-name-input"></input>
+			            		</div>
+					            <div class="col-md-12">
+					                <h5 class="poll-question-title">Poll Question</h5>
+					                <input type="text" class="form-control round" id="poll-question-input"></input>
+					            </div>
+							</div>
+						</div>
+		            </div>
+	            </div>
+	           	<div class="form-group">
+		            <div class="row">
+	            		<div class="panel panel-primary">
+							<div class="panel-heading">
+							  <h3 class="panel-title">Poll Options</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row hidden" id="option_template">
+									<div class="col-md-1"><label class="option-label">Option 1</label></div>
+									<div class="col-md-10">
+										<input type="text" class="form-control round option-input"></input>
+									</div>
+									<div class="col-md-1">
+										<button type="button" class="btn btn-danger btn-sm remove-option" id="remove_option_1">
+											<i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+										</button>
+									</div>
+								</div>
+								<div id="options-wrapper">
+									<div class="row" id="option_1">
+									<div class="col-md-1"><label class="option-label">Option 1</label></div>
+									<div class="col-md-10">
+										<input type="text" class="form-control round option-input"></input>
+									</div>
+										<div class="col-md-1">
+											<button type="button" class="btn btn-danger btn-sm remove-option" id="remove_option_1">
+												<i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-11"></div>
+									<div class="col-md-1">
+										<button type="button" class="btn btn-success btn-sm add-option">
+											<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+		            </div>
+	            </div>
+    		</form>
+    		<div class="row">
+    			<div class="col-lg-10"></div>
+    			<div class="col-lg-2">
+    				<button id="submit-button-create" type="button" class="btn btn-block btn-info">Submit</button>
+    			</div>
+    		</div>
+	    	
+    	</div>
+        
+        
+        <!-- jQuery library -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- Jquery logic for submiting data -->
+        <script type="text/javascript" th:src="@{/logic.js}"></script>
+        
+    </body>
+</html>

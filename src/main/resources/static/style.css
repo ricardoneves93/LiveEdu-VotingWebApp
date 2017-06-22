@@ -4,6 +4,14 @@ body {
   background-color: #eee;
 }
 
-.poll-name {
-	text-align: left;
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.hidden {
+	display: hidden;
 }

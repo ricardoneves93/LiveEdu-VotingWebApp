@@ -5,34 +5,39 @@
     	<!-- Latest compiled CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
         
-        <link href="style.css" rel="stylesheet"></link>
+        <link rel="stylesheet" th:href="@{/style.css}"></link>
+        
+        <link rel="stylesheet" th:href="@{/remark.min.css}"></link>
+        
         <title>Spring Boot voting - Poll</title>
     </head>
     <body>
     	<div class="container">
     		<div class="row">
-    			<h4 class="poll-name">Poll - <span th:text="${poll.pollName}"></span></h4>
+    			<h2 class="center"><span th:text="${poll.pollName}"></span></h2>
     		</div>
     		<div class="row">
-    			<h6 th:text="${poll.pollQuestion}"></h6>
+    			<h4 th:text="${poll.pollQuestion}"></h4>
     		</div>
     		
 	    	<div class="row">
     			<table class="table table-hover" data-selectable="selectable" data-row-selectable="true">
 			    	<thead>
+			    		<th></th>
 			    		<th>Option</th>
 			    		<th># Votes</th>
 			    	</thead>
 			    	<tbody>
-			    		<form th:id="vote-form" action="#" th:action="@{/polls/dec}" th:object="${voteModel}" method="post">
+			    		<form th:id="vote-form">
 			    			<tr th:each="pollOption: ${poll.pollOptions}">
 				    			<td>
-					    			<span class="checkbox-custom checkbox-primary">
-			                            <input class="selectable-all" type="radio" th:name="poll" th:value="${pollOption.id}"></input>
-			                          </span>
-				    			</td>
+					                <div class="radio-custom radio-success">
+				                      <input type="radio" th:name="poll-option" th:value="${pollOption.id}"></input>
+				                      <label></label>
+				                    </div>
+				                </td>
 				    			<td th:text="${pollOption.optionName}"></td>
-				    			<td th:text="${pollOption.optionVotes}"></td>
+				    			<td th:id="'number_votes_' + ${pollOption.id}" th:text="${pollOption.optionVotes}"></td>
 			    			</tr>
 			    		</form>
 			    		
@@ -42,19 +47,20 @@
     		<div class="row">
     			<div class="col-lg-10"></div>
     			<div class="col-lg-2">
-    				<button id="submit-button" type="button" class="btn btn-block btn-info">Submit</button>
+    				<button id="submit-button" th:name="${poll.id}" type="button" class="btn btn-block btn-info">Submit</button>
     			</div>
     		</div>
 	    	
     	</div>
-    	
-    	<!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        
+        <!-- jQuery library -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
         <!-- Jquery logic for submiting data -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" th:src="@{/logic.js}"></script>
     </body>
 </html>
