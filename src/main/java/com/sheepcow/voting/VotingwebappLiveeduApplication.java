@@ -1,12 +1,21 @@
 package com.sheepcow.voting;
 
+
+import java.net.UnknownHostException;
+
+import org.jongo.Jongo;
+import org.jongo.MongoCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
 import com.sheepcow.voting.repositories.PollRepository;
 
 @SpringBootApplication
-public class VotingwebappLiveeduApplication/* implements CommandLineRunner*/ {
+public class VotingwebappLiveeduApplication {
 	
 	@Autowired
 	PollRepository repository;
@@ -16,25 +25,16 @@ public class VotingwebappLiveeduApplication/* implements CommandLineRunner*/ {
 	}
 	
 	/*
-	@Override
-	public void run(String... arg0) throws Exception {
-		
-		//repository.deleteAll();
-		
-		String pollOwner = "Sheep";
-		String pollQuestion = "What is the color of your jeans?";
-		String pollName = "jeans";
-		Map<String, Integer> pollOptions = new HashMap<String, Integer>();
-		pollOptions.put("Green", 5);
-		pollOptions.put("Blue", 0);
-		pollOptions.put("Red", 15);
-		
-		Poll poll = new Poll(pollName, pollQuestion, pollOwner, pollOptions);
-		
-		//System.out.println(repository.findPollByPollName("jeans"));
-		//System.out.println(repository.findPollByPollOwner("Sheep"));
-		
-		//repository.save(poll);
-	}
-	*/
+	@Bean
+    public Jongo jongo() {
+        DB db = new MongoClient("127.0.0.1", 27017).getDB("test");
+        return new Jongo(db);
+    }
+
+    @Bean
+    public MongoCollection users() {
+        return jongo().getCollection("users");
+    }
+    */
+    
 }
